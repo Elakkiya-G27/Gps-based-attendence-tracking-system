@@ -1,19 +1,23 @@
-from django.urls import path
-from . import views
+"""
+URL configuration for backend project.
 
-
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/5.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path,include
 
 urlpatterns = [
-    path('accounts/register/', views.signup, name='signup'),  # Correct path for signup
-    path('accounts/login/', views.login, name='login'),  # Correct path for login
-    path('staff/', views.staff, name='staff'),
-    path('store-student-data/', views.store_student_data, name='store_student_data'),
-#    path('attendance/records/<str:staff_name>/<str:course_code>/<str:date>/', RecordAttendanceView.as_view(), name='attendance_records'),
-    path('attendance/record/', views.record_attendance, name='record_attendance'),
-    path('attendance/view/',views.view_attendance,name='view'),
-    path('attendance/update/<str:roll_number>/', views.update_attendance_status, name='update_attendance_status'),
-    path('accounts/request-reset-otp/', views.send_reset_otp, name='request_reset_otp'),
-    
-    # URL for resetting the password with OTP
-    path('accounts/reset-password/', views.reset_password, name='reset_password'),
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
 ]
